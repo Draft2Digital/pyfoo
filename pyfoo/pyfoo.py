@@ -318,7 +318,7 @@ class PyfooAPI(object):
             forms_json = self.make_call('https://%s.wufoo.com/api/v3/forms.json' % self.account)
             self._forms = [Form(self, form_dict) for form_dict in forms_json['Forms']]
         return self._forms
-    
+
     # Reports
     @property
     def reports(self):
@@ -326,4 +326,7 @@ class PyfooAPI(object):
             reports_json = self.make_call('https://%s.wufoo.com/api/v3/reports.json' % self.account)
             self._reports = [Report(self, report_dict) for report_dict in reports_json['Reports']]
         return self._reports
-    
+
+    def get_form(self, form_id):
+        forms_json = self.make_call(f'https://{ self.account }.wufoo.com/api/v3/forms/{ form_id }.json')
+        return Form(self, forms_json['Forms'][0])
