@@ -23,6 +23,7 @@ class WufooObject(object):
     def __init__(self, api, json_object):
         super(WufooObject, self).__init__()
         self.api = api
+        self.json = json_object
         for key in list(json_object.keys()):
             if isinstance(json_object[key], list):
                 sub_list = []
