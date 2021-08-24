@@ -1,6 +1,7 @@
 import unittest
 import os, sys
 import json
+import urllib.parse
 
 try:
     import urllib.request as urllib_request
@@ -18,7 +19,7 @@ def test_make_call(url, post_params=None, method=None ):
     post_params_string = ''
     if post_params:
         post_params_string = ''.join(list(post_params.keys()))
-    path = 'test_scripts/%s%s.json' % (url.replace('://','__').replace('/', '_'), post_params_string)
+    path = 'test_scripts/%s%s.json' % (urllib.parse.quote(url.replace('://','__').replace('/', '_')),post_params_string)
     
     try:
         test_script = open(path)
