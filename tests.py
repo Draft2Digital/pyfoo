@@ -1,6 +1,7 @@
 import unittest
 import os, sys
 import json
+import urllib.parse
 
 try:
     import urllib.request as urllib_request
@@ -18,13 +19,13 @@ def test_make_call(url, post_params=None, method=None ):
     post_params_string = ''
     if post_params:
         post_params_string = ''.join(list(post_params.keys()))
-    path = 'test_scripts/%s%s.json' % (url.replace('/', '_'), post_params_string)    
+    path = 'test_scripts/test_data.json'
     
     try:
-        test_script = open(path)
-        json_object = json.load(test_script)
-        test_script.close()
-    except IOError as ex:
+        test_data_file = open(path)
+        json_object = json.load(test_data_file)["%s%s" % (url, post_params_string)]
+        test_data_file.close()
+    except NameError as ex:
         api = PyfooAPI(account, api_key)
         json_object = api.make_call(url, post_params, method)
         print(ex)
