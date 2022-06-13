@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="pyfoo",
-    version="0.3",
+    version="0.3.0+d2d.001",
     description="Python wrapper around the Wufoo API",
     long_description=Path(__file__).with_name("README.markdown").read_text(),
     license="MIT",
